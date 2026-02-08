@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Will You Be My Valentine, Samrath?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+    }
+
+    .typing {
+      font-size: 1.2rem;
+      text-align: center;
+      min-height: 50px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 25px;
+      margin: 30px 0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    .phase {
+      font-size: 1.2rem;
+      margin-top: 20px;
+      color: #ffb3d9;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .final {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-top: 60px;
+    }
+
+    .button {
+      margin-top: 20px;
+      padding: 12px 28px;
+      background: #ff5fa2;
+      color: white;
+      border-radius: 30px;
+      border: none;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      background: #ff80b7;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp 4s linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    #finalScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #1a002b, #000);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .finalMessage {
+      font-size: 3rem;
+      color: #fff;
+      text-align: center;
+      animation: fadeIn 3s ease forwards;
+      font-weight: 500;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>💘 Hi Samrath</h1>
+    <div class="typing" id="typing"></div>
+
+    <div class="card">
+      <h2>Why This Page Exists</h2>
+      <p>
+        Because my heart doesn’t believe in vague feelings.<br>
+        It believes in intention, effort, and slightly dramatic gestures.
+      </p>
+      <p>
+        After extensive internal debugging, I reached one conclusion:
+        <strong>you matter to me.</strong>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>📅 Valentine’s Date Plan</h2>
+
+      <div class="phase">🏠 Phase 1 — Us, Unplugged</div>
+      <ul>
+        <li>Date at home</li>
+        <li>Cooking a meal together</li>
+        <li>Music on, chaos optional</li>
+      </ul>
+
+      <div class="phase">🛏 Phase 2 — PillowFight.exe</div>
+      <ul>
+        <li>Pillow fight initiated</li>
+        <li>Winner decides what we cook and watch</li>
+        <li>Loser pretends they’re okay with it</li>
+      </ul>
+
+      <div class="phase">🛒 Phase 3 — Grocery Store Side Quest</div>
+      <ul>
+        <li>Fun stroll to the nearest store</li>
+        <li>Shopping for ingredients</li>
+        <li>Turning ordinary moments into memories</li>
+      </ul>
+
+      <div class="phase">💃 Phase 4 — Dance v1.0</div>
+      <ul>
+        <li>30-second dance choreography</li>
+        <li>I teach it</li>
+        <li>Because that’s how we first met hehe</li>
+      </ul>
+
+      <div class="phase">🌌 Phase 5 — Under the Stars</div>
+      <ul>
+        <li>Terrace access granted</li>
+        <li>Dancing under the stars</li>
+        <li>A moment we’ll want to replay</li>
+      </ul>
+    </div>
+
+    <div class="final">
+      <p>So…</p>
+      <p><strong>Will you be my Valentine? 💖</strong></p>
+      <button class="button" id="approveBtn">Approve Pull Request</button>
+      <p id="reaction" style="display:none; margin-top:20px;"></p>
+    </div>
+
+    <footer>
+      Built with courage, care, and a little chaos ✨
+    </footer>
+  </div>
+
+  <!-- Apocalypse Music -->
+  <iframe
+    id="music"
+    width="0"
+    height="0"
+    src=""
+    frameborder="0"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
+
+  <!-- Final Screen -->
+  <div id="finalScreen">
+    <div class="finalMessage">I love you my sweetpea❤️</div>
+  </div>
+
+  <script>
+    const text = [
+      "This is me, being brave.",
+      "And a little dramatic.",
+      "But mostly honest.",
+      "I Love you.",
+      "And I’d love to plan a date with you."
+    ];
+
+    let index = 0;
+    let char = 0;
+    const speed = 60;
+    const typingDiv = document.getElementById("typing");
+
+    function typeEffect() {
+      if (char < text[index].length) {
+        typingDiv.innerHTML += text[index].charAt(char);
+        char++;
+        setTimeout(typeEffect, speed);
+      } else {
+        setTimeout(() => {
+          typingDiv.innerHTML = "";
+          char = 0;
+          index = (index + 1) % text.length;
+          typeEffect();
+        }, 1800);
+      }
+    }
+    typeEffect();
+
+    const approveBtn = document.getElementById("approveBtn");
+    const reaction = document.getElementById("reaction");
+
+    approveBtn.addEventListener("click", () => {
+      approveBtn.innerText = "PR Approved 💖";
+      approveBtn.disabled = true;
+      approveBtn.style.background = "#8affc1";
+
+      reaction.style.display = "block";
+      reaction.innerHTML = "✅ Pull Request merged successfully.<br>Deploying emotions…";
+
+      // Play Apocalypse
+      document.getElementById("music").src =
+        "https://www.youtube.com/embed/9k7K8Xrj6R0?autoplay=1&start=10";
+
+      // Floating hearts
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerText = "💖";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }
+
+      // Final screen
+      setTimeout(() => {
+        document.getElementById("finalScreen").style.display = "flex";
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
